@@ -12,41 +12,64 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- *
- * @author 16380127763
+ * Classe de entidade para clientes.
+ * 
+ * @author Kayke Ragoso
  */
 @Entity
 @Table(name="clientes")
 public class clientes {
-    //Wrappers --> Integer, Double, Float, Boolean, ...
+    // Identificador único do cliente (chave primária)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codigo")
     private Integer codigo;
+
+    // Nome do usuário (não pode ser nulo)
     @Column(nullable = false)
     private String nomeUsuario;
+
+    // CPF do usuário (único, pode ser nulo)
     @Column(nullable = true, unique = true)
     private String cpf;
+
+    // E-mail do usuário (não pode ser nulo)
     @Column(nullable = false)
     private String emailUsuario;
+
+    // Celular do usuário (não pode ser nulo e deve ser único)
     @Column(nullable = false, unique = true)
     private String celular;    
+
+    // Observação sobre o usuário (não pode ser nulo)
     @Column(nullable = false)
     private String observaçãoUsuario;
+
+    // Data de nascimento do usuário (não pode ser nulo)
     @Column(nullable = false) 
     private String nascimentoUsuario;
+
+    // Data de entrada do usuário (não pode ser nulo)
     @Column(nullable = false)
     private String entradaUsuario;
+
+    // Função do usuário (não pode ser nulo)
     @Column(nullable = false)
     private String cmbFunção;
+
+    // Sexo do usuário (não pode ser nulo)
     @Column(nullable = false)
     private String sexoUsuario;
+
+    // Salário base do usuário (não pode ser nulo)
     @Column(nullable = false)
     private String salarioBase;
     
+    // Construtor padrão
     public clientes() {
     }
 
+    // Construtor com parâmetros
     public clientes(Integer codigo, String nomeUsuario, String cpfUsuario, String emailUsuario, String celularUsuario, String observaçãoUsuario, String nascimentoUsuario, String entradaUsuario, String cmbFunção, String sexoUsuario, String salarioBase) {
         this.codigo = codigo;
         this.nomeUsuario = nomeUsuario;
@@ -61,6 +84,7 @@ public class clientes {
         this.salarioBase = salarioBase;
     }
 
+    // Getters e setters para todos os campos
     public Integer getCodigo() {
         return codigo;
     }
@@ -149,6 +173,7 @@ public class clientes {
         this.salarioBase = salarioBase;
     }
 
+    // Representação em String do objeto clientes
     @Override
     public String toString() {
         return "clientes{" + "codigo=" + codigo + ", nomeUsuario=" + nomeUsuario + ", cpfUsuario=" + cpf + ", emailUsuario=" + emailUsuario + ", celularUsuario=" + celular + ", observa\u00e7\u00e3oUsuario=" + observaçãoUsuario + ", nascimentoUsuario=" + nascimentoUsuario + ", entradaUsuario=" + entradaUsuario + ", cmbFun\u00e7\u00e3o=" + cmbFunção + ", sexoUsuario=" + sexoUsuario + ", salarioBase=" + salarioBase + '}';

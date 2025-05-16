@@ -1,6 +1,7 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Classe DAO responsável pelas operações de acesso e manipulação de dados da entidade clientes.
+ * Utiliza JPA para persistência, alteração, remoção, busca e autenticação de clientes no banco de dados.
+ * Inclui métodos para autenticação, busca por telefone, busca por ID, busca de todos os clientes e criação de login.
  */
 package br.estacio.projetoestacio.visao;
 
@@ -14,46 +15,58 @@ import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author 16380127763
+ * Classe DAO para operações com clientes.
+ * 
+ * @author Kayke Ragoso
  */
 public class ClienteDAO {
+    // Gerenciador de entidades JPA
     private final EntityManager EM;
+    // Flag para autenticação
     public boolean autenticado = false;
     
+    // Instância da tela principal (interface gráfica)
     FrmTelaPrincipal p = new FrmTelaPrincipal();
     
+    // Construtor que recebe o EntityManager
     public ClienteDAO(EntityManager EM){
         this.EM = EM;
     }
     
+    // Método para cadastrar um novo cliente
     public void cadastrar(clientes cliente){
         EM.persist(cliente);
     }
     
+    // Método para alterar um cliente existente
     public void alterar(clientes cliente){
         EM.merge(cliente);
     }
     
+    // Método para remover um cliente
     public void remover(clientes cliente){
         cliente = EM.merge(cliente);
         EM.remove(cliente);
     }
     
+    // Busca um cliente pelo ID
     public clientes buscarPorId(Integer id){
         return EM.find(clientes.class, id);
     }
     
+    // Busca todos os nomes de usuários cadastrados
     public List<String> buscarSetores(){
         TypedQuery<String> query = EM.createQuery("SELECT c.nomeUsuario FROM clientes c", String.class);
         return query.getResultList();
     }
     
+    // Busca todos os clientes cadastrados
     public List<clientes> buscarTodos(){
         String jpql = "SELECT c FROM clientes c";
         return EM.createQuery(jpql,clientes.class).getResultList();
     }
     
+    // Busca um cliente pelo telefone
     public clientes buscarPorTelefone(String tel){
         String jpql = "SELECT c FROM clientes c where c.telefone = :tel";
         return EM.createQuery(jpql,clientes.class)
@@ -61,6 +74,7 @@ public class ClienteDAO {
                 .getSingleResult();
     }
     
+    // Autentica um cliente pelo CPF e celular
     public boolean autenticar(String cpfusuario, String celularusuario){
         try {
                 // Ajuste a JPQL para usar os nomes corretos dos atributos da entidade clientes
@@ -91,6 +105,7 @@ public class ClienteDAO {
             }
     }
 
+    // Cria um novo login para o cliente, controlando a transação manualmente
     public void CriarLogin(clientes cliente){
         EntityTransaction transaction = null;
                 try {

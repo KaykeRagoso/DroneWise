@@ -1,6 +1,7 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Classe de modelo que representa a entidade "pedidos" no banco de dados.
+ * Utiliza anotações JPA para mapear os campos da classe para as colunas da tabela.
+ * Fornece construtores, getters, setters e método toString para manipulação dos dados.
  */
 package br.estacio.projetoestacio.modelo;
 
@@ -12,41 +13,64 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- *
- * @author 16380127763
+ * Classe de entidade para pedidos.
+ * 
+ * @author Kayke Ragoso
  */
 @Entity
 @Table(name="pedidos")
 public class pedidos {
-        //Wrappers --> Integer, Double, Float, Boolean, ...
+    // Identificador único do pedido (chave primária)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codigo")
     private Integer codigo;
+
+    // Endereço do pedido (não pode ser nulo)
     @Column(nullable = false)
     private String endereco;
+
+    // Ponto de referência do pedido (não pode ser nulo)
     @Column(nullable = false)
     private String pontoReferencia;
+
+    // Setor de serviço do pedido (não pode ser nulo)
     @Column(nullable = false)
     private String setorServico;
+
+    // Nome do cliente (não pode ser nulo)
     @Column(nullable = false)
     private String cliente;
+
+    // Tempo de filmagem (não pode ser nulo)
     @Column(nullable = false)
     private String tempoFilmagem;
+
+    // Número de celular do cliente (não pode ser nulo)
     @Column(nullable = false)
     private String numeroCelularCliente;
+
+    // Dia da filmagem (não pode ser nulo)
     @Column(nullable = false)
     private String diaFilmagem;
+
+    // Horário da filmagem (não pode ser nulo)
     @Column(nullable = false)
     private String horarioFilmagem;
+
+    // Tipo de filmagem (não pode ser nulo)
     @Column(nullable = false)
     private String tipoFilmagem;
+
+    // Preço estimado do pedido (não pode ser nulo)
     @Column(nullable = false)
     private String preçoEstimado;
 
+    // Construtor padrão
     public pedidos() {
     }
 
+    // Construtor com parâmetros
     public pedidos(Integer codigo, String endereco, String pontoReferencia, String setorServico, String cliente, String tempoFilmagem, String numeroCelularCliente, String diaFilmagem, String horarioFilmagem, String tipoFilmagem, String preçoEstimado) {
         this.codigo = codigo;
         this.endereco = endereco;
@@ -61,6 +85,7 @@ public class pedidos {
         this.preçoEstimado = preçoEstimado;
     }
 
+    // Getters e setters para todos os campos
     public Integer getCodigo() {
         return codigo;
     }
@@ -149,12 +174,9 @@ public class pedidos {
         this.preçoEstimado = preçoEstimado;
     }
 
+    // Representação em String do objeto pedidos
     @Override
     public String toString() {
-        return "pedidos{" + "codigo=" + codigo + ", endereco=" + endereco + ", pontoReferencia=" + pontoReferencia + ", setorServico=" + setorServico + ", cliente=" + cliente + ", tempoFilmagem=" + tempoFilmagem + ", numeroCelularCliente=" + numeroCelularCliente + ", diaFilmagem=" + diaFilmagem + ", horarioFilmagem=" + horarioFilmagem + ", tipoFilmagem=" + tipoFilmagem + ", pre\u00e7oEstimado=" + preçoEstimado + '}';
+        return "pedidos{" + "codigo=" + codigo + ", endereco=" + endereco + ", pontoReferencia=" + pontoReferencia + ", setorServico=" + setorServico + ", cliente=" + cliente + ", tempoFilmagem=" + tempoFilmagem + ", numeroCelularCliente=" + numeroCelularCliente + ", diaFilmagem=" + diaFilmagem + ", horarioFilmagem=" + horarioFilmagem + ", tipoFilmagem=" + tipoFilmagem + ", preçoEstimado=" + preçoEstimado + '}';
     }
-
-   
-    
-    
 }

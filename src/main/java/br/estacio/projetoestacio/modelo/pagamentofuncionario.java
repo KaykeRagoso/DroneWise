@@ -12,34 +12,48 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- *
- * @author 16380127763
+ * Classe de entidade para pagamento de funcionários.
+ * 
+ * @author Kayke Ragoso
  */
 @Entity
 @Table(name="pagamentofuncionario")
 public class pagamentofuncionario {
-    //Wrappers --> Integer, Double, Float, Boolean, ...
+    // Identificador único do pagamento (chave primária)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codigo")
     private Integer codigo;
+
+    // Nome do funcionário (não pode ser nulo)
     @Column(nullable = false)
     private String nomeFuncionario;
-    @Column(nullable = false,unique = true)
+
+    // CPF do funcionário (não pode ser nulo e deve ser único)
+    @Column(nullable = false, unique = true)
     private String CPFuncionario;
+
+    // Horas trabalhadas pelo funcionário (não pode ser nulo)
     @Column(nullable = false)
     private String horasTrabalhadas;
+
+    // Quantidade de voos feitos no mês (não pode ser nulo)
     @Column(nullable = false)
     private String VoosfeitosMês;
-    @Column(nullable = false,unique = true)
+
+    // Telefone do funcionário (não pode ser nulo e deve ser único)
+    @Column(nullable = false, unique = true)
     private String TelefoneFuncionario;
+
+    // Valor do pagamento (não pode ser nulo)
     @Column(nullable = false)
     private String pagamento;
     
+    // Construtor padrão
     public pagamentofuncionario() {
-    
     }    
 
+    // Construtor com parâmetros
     public pagamentofuncionario(Integer codigo, String nomeFuncionario, String CPFuncionario, String horasTrabalhadas, String VoosfeitosMês, String TelefoneFuncionario, String pagamento) {
         this.codigo = codigo;
         this.nomeFuncionario = nomeFuncionario;
@@ -50,6 +64,7 @@ public class pagamentofuncionario {
         this.pagamento = pagamento;
     }
 
+    // Getters e setters para todos os campos
     public Integer getCodigo() {
         return codigo;
     }
@@ -106,10 +121,9 @@ public class pagamentofuncionario {
         this.pagamento = pagamento;
     }
 
+    // Representação em String do objeto pagamentofuncionario
     @Override
     public String toString() {
-        return "pagamentofuncionario{" + "codigo=" + codigo + ", nomeFuncionario=" + nomeFuncionario + ", CPFuncionario=" + CPFuncionario + ", horasTrabalhadas=" + horasTrabalhadas + ", VoosfeitosM\u00eas=" + VoosfeitosMês + ", TelefoneFuncionario=" + TelefoneFuncionario + ", pagamento=" + pagamento + '}';
+        return "pagamentofuncionario{" + "codigo=" + codigo + ", nomeFuncionario=" + nomeFuncionario + ", CPFuncionario=" + CPFuncionario + ", horasTrabalhadas=" + horasTrabalhadas + ", VoosfeitosMês=" + VoosfeitosMês + ", TelefoneFuncionario=" + TelefoneFuncionario + ", pagamento=" + pagamento + '}';
     }
-    
-    
 }
